@@ -1,584 +1,401 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Mayesha! 🎁💥</title>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: radial-gradient(circle at center, #1a1c2e, #0f101d);
-      font-family: 'Hind Siliguri', 'Poppins', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      color: #fff;
-      padding: 10px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শুভ ১৭তম জন্মদিন!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* Floating Sparkles */
-    .sparkle {
-      position: absolute;
-      font-size: 20px;
-      animation: floatUp 4s linear infinite;
-      bottom: -30px;
-      z-index: 1;
-      pointer-events: none;
-    }
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(0.8); opacity: 1; }
-      100% { transform: translateY(-105vh) scale(1.2); opacity: 0; }
-    }
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            font-family: 'SolaimanLipi', 'Kalpurush', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+        }
 
-    /* Card Frame */
-    .app-card {
-      position: relative;
-      width: 100%;
-      max-width: 420px;
-      height: 670px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      border-radius: 30px;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.7);
-      backdrop-filter: blur(20px);
-      z-index: 10;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      overflow: hidden;
-    }
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
 
-    /* Bouncing Animated Gift Trigger Box */
-    .gift-trigger {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      cursor: pointer;
-      z-index: 50;
-      transition: all 0.5s ease-in-out;
-      animation: bounceGlow 1.2s infinite ease-in-out;
-    }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.4s ease-in-out;
+            position: relative;
+        }
 
-    @keyframes bounceGlow {
-      0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 10px #ff3366); }
-      50% { transform: translateY(-18px) scale(1.15) rotate(4deg); filter: drop-shadow(0 0 25px #ff758c); }
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
 
-    .gift-icon {
-      font-size: 90px;
-      user-select: none;
-    }
-    .gift-hint {
-      background: linear-gradient(45deg, #ff3366, #ff758c);
-      color: #fff;
-      font-size: 14px;
-      font-weight: bold;
-      padding: 8px 18px;
-      border-radius: 25px;
-      box-shadow: 0 4px 15px rgba(255, 51, 102, 0.6);
-      margin-top: -5px;
-      white-space: nowrap;
-      border: 1.5px solid #fff;
-    }
+        /* ছবি এবং লেখা সম্পূর্ণ আলাদা রাখা হয়েছে, ওপর নিচে সুন্দর মার্জিন সহ */
+        .card img {
+            width: 100%;
+            max-height: 240px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
 
-    /* Positions for Bouncing Box across screen */
-    .pos-center { top: 40%; left: 50%; transform: translate(-50%, -50%); }
-    .pos-top-right { top: 15%; right: 10%; }
-    .pos-bottom-left { bottom: 15%; left: 10%; }
-    .pos-top-left { top: 15%; left: 10%; }
-    .pos-bottom-right { bottom: 15%; right: 10%; }
-    .pos-center-top { top: 18%; left: 50%; transform: translateX(-50%); }
-    .pos-center-bottom { bottom: 18%; left: 50%; transform: translateX(-50%); }
+        .card p {
+            font-size: 1.05rem;
+            color: #d81b60;
+            font-weight: bold;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
 
-    /* POP-UP CONTENT DISPLAY */
-    .content-box {
-      width: 100%;
-      height: 100%;
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      animation: popUpRise 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-      z-index: 20;
-    }
-    .content-box.active {
-      display: flex;
-    }
+        /* সাইডে বা নিচে সুন্দর ছোট বক্স বা নেক্সট বাটন */
+        .side-action-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-top: 5px;
+            padding-top: 10px;
+            border-top: 1px dashed #ff80ab;
+        }
 
-    /* Rise Up Blast Animation */
-    @keyframes popUpRise {
-      0% { opacity: 0; transform: translateY(100px) scale(0.3) rotate(-10deg); }
-      70% { transform: translateY(-10px) scale(1.05); }
-      100% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
-    }
+        .small-box {
+            font-size: 35px;
+            cursor: pointer;
+            animation: bounce 1.5s infinite;
+        }
 
-    .sticker-title {
-      font-family: 'Pacifico', cursive;
-      font-size: 24px;
-      background: linear-gradient(45deg, #ff9a9e, #fecfef, #a1c4fd);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      padding: 6px 14px;
-      border: 2px dashed #ff758c;
-      border-radius: 20px;
-      background-color: rgba(0, 0, 0, 0.3);
-      margin-bottom: 12px;
-    }
+        .btn {
+            background: linear-gradient(45deg, #ff4081, #ff80ab);
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            font-size: 0.95rem;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
+            transition: all 0.3s ease;
+            outline: none;
+        }
 
-    .photo-card {
-      width: 100%;
-      height: 260px;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 3px solid #ff758c;
-      box-shadow: 0 0 25px rgba(255, 117, 140, 0.5);
-      margin: 12px 0;
-      background: #000;
-    }
-    .photo-card img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 64, 129, 0.6);
+        }
 
-    h2 {
-      color: #ff9a9e;
-      font-size: 22px;
-      margin-bottom: 6px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    }
-    p {
-      font-size: 15px;
-      line-height: 1.5;
-      color: #f0f0f0;
-      padding: 0 8px;
-    }
+        .initial-gift-box {
+            font-size: 90px;
+            cursor: pointer;
+            animation: bounce 1.5s infinite;
+            margin-bottom: 15px;
+        }
 
-    /* Calendar Styling */
-    .calendar-card {
-      background: rgba(255, 255, 255, 0.15);
-      border: 2px solid #ff758c;
-      border-radius: 20px;
-      padding: 15px;
-      width: 280px;
-      box-shadow: 0 0 20px rgba(255, 117, 140, 0.4);
-      margin-bottom: 15px;
-    }
-    .calendar-header {
-      font-size: 20px;
-      font-weight: bold;
-      color: #ff9a9e;
-      margin-bottom: 10px;
-    }
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 6px;
-      text-align: center;
-      font-size: 13px;
-    }
-    .cal-day-name {
-      font-weight: bold;
-      color: #fecfef;
-    }
-    .cal-date {
-      padding: 5px 0;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.05);
-    }
-    .cal-highlight {
-      background: linear-gradient(45deg, #ff3366, #ff758c) !important;
-      color: #fff;
-      font-weight: bold;
-      box-shadow: 0 0 10px #ff3366;
-      position: relative;
-      animation: pulseHeart 1s infinite alternate;
-    }
-    .cal-highlight::after {
-      content: ' ❤️';
-      font-size: 10px;
-    }
-    @keyframes pulseHeart {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.15); }
-    }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
 
-    .reveal-wish {
-      animation: popUpRise 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-      background: rgba(0,0,0,0.4);
-      border: 2px solid #ff758c;
-      border-radius: 20px;
-      padding: 20px;
-    }
+        .birthday-screen {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            width: 100%;
+        }
 
-    .replay-btn {
-      margin-top: 20px;
-      background: linear-gradient(45deg, #ff3366, #ff758c);
-      color: white; border: none;
-      padding: 12px 28px; font-size: 16px; font-weight: bold;
-      border-radius: 30px; cursor: pointer;
-      box-shadow: 0 5px 15px rgba(255, 51, 102, 0.5);
-    }
-  </style>
+        .age-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4081;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 5px 12px;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .hbd-title {
+            font-size: 2rem;
+            color: #d81b60;
+            margin: 15px 0;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .cake-img {
+            font-size: 70px;
+            margin: 10px 0;
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+
+        .falling-flower {
+            position: fixed;
+            top: -50px;
+            font-size: 24px;
+            animation: fall linear forwards;
+            z-index: 100;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .music-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Audio Player -->
-  <audio id="bgMusic" loop preload="auto">
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()">🎵</button>
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-112239.mp3" type="audio/mpeg">
+    </audio>
 
-  <div id="sparkle-container"></div>
+    <div class="container" id="container"></div>
 
-  <div class="app-card">
+    <script>
+        const images = [
+            "https://lh3.googleusercontent.com/d/1YkoYxfSZdQ6SZxr2ltCgIXj8Yuqx2erM",
+            "https://lh3.googleusercontent.com/d/1GKDl3uh7RGlR4iM7kb2Jp6Kl9A-dhCp7",
+            "https://lh3.googleusercontent.com/d/1u0nI02_3j9ZMmOL2LtDRONJ_LG_Kpwx8",
+            "https://lh3.googleusercontent.com/d/1dmtTeCD4VuZ17QFFAcqHczdvk9uAEY4x",
+            "https://lh3.googleusercontent.com/d/1peG35ayknddmRWtXl1qLuHDFpmOamSgr",
+            "https://lh3.googleusercontent.com/d/1F7jVa1KBjMJuovWj7TtBN-F4mgEFU9KU",
+            "https://lh3.googleusercontent.com/d/1YkoYxfSZdQ6SZxr2ltCgIXj8Yuqx2erM", 
+            "https://lh3.googleusercontent.com/d/1GKDl3uh7RGlR4iM7kb2Jp6Kl9A-dhCp7",
+            "https://lh3.googleusercontent.com/d/1u0nI02_3j9ZMmOL2LtDRONJ_LG_Kpwx8",
+            "https://lh3.googleusercontent.com/d/1dmtTeCD4VuZ17QFFAcqHczdvk9uAEY4x",
+            "https://lh3.googleusercontent.com/d/1peG35ayknddmRWtXl1qLuHDFpmOamSgr"
+        ];
 
-    <!-- BOUNCING GIFT BOX TRIGGER -->
-    <div class="gift-trigger pos-center" id="boxTrigger" onclick="triggerBlast()">
-      <div class="gift-icon">🎁</div>
-      <div class="gift-hint" id="boxHint">এই আমার প্রিয় বউ, তুমি কি আমার প্রেমিক হবা? ❤️</div>
-    </div>
+        const messages = [
+            "তোমার হাসিতে আমার পুরো পৃথিবী আলোকিত হয়ে যায়! ❤️",
+            "তোমার সাথে কাটানো প্রতিটা মুহূর্ত আমার জীবনের সেরা উপহার। ✨",
+            "তুমি আমার জীবনের সবচেয়ে সুন্দর অনুভূতি! 🌸",
+            "তোমার ওই মিষ্টি চোখ দুটোতে হারিয়ে যেতে ইচ্ছে করে সবসময়। 💖",
+            "তোমার ভালোবাসায় আমার জীবন এতোটা রঙিন হয়েছে! 🎨",
+            "তুমি আছো বলেই আমার দিনগুলো এতো সুন্দর আর বিশেষ। 🌺",
+            "তুমি শুধু আমার ভালোবাসাই নও, আমার জীবনের সব সুখের ঠিকানা। 💞",
+            "সারাজীবন তোমার হাতটি ধরে পাশে রাখতে চাই! 🤝",
+            "তুমি আমার জীবনের মিষ্টি সুর আর রোদেলা সকাল। ☀️",
+            "সবসময় এভাবেই আমার পাশে থেকো প্রিয়। 🌹",
+            "তোমাকে অনেক অনেক বেশি ভালোবাসি! সবসময় সুخه থেকো! 💖✨"
+        ];
 
-    <!-- 15 POP-UP CONTENTS -->
-    
-    <!-- STEP 1: CALENDAR & AUTO BLAST WISH -->
-    <div class="content-box" id="step1">
-      <div id="calView">
-        <div class="sticker-title">July 2026</div>
-        <div class="calendar-card">
-          <div class="calendar-header">জুলাই ২০২৬</div>
-          <div class="calendar-grid">
-            <div class="cal-day-name">রবি</div>
-            <div class="cal-day-name">সোম</div>
-            <div class="cal-day-name">মঙ্গল</div>
-            <div class="cal-day-name">বুধ</div>
-            <div class="cal-day-name">বৃহ</div>
-            <div class="cal-day-name">শুক্র</div>
-            <div class="cal-day-name">শনি</div>
+        const funnyTexts = [
+            "একি! তুমি কি আসলেই এটা খুলতে চাও? নাকি এমনি ক্লিক করছো? 🤭",
+            "আচ্ছা, খুলছ যখন দেখেই ফেলো ভেতরে কী আছে! 🤪",
+            "খবরদার! পরেরটা খোলার আগে কিন্তু মিষ্টি খাওয়াতে হবে! 🍰",
+            "বাহ! তোমার আঙুল তো বেশ ফাস্ট দেখছি! পরেরটা খোলো দেখি? 😋",
+            "এত জলদি কি আর সব দেখতে দেব? নাও আরেকটা দেখো! 🎈",
+            "সাবধান! ভেতরে কিন্তু অনেক ভালোবাসা লুকানো আছে! 💘",
+            "তুমি কি একটু বেশিই কিউট না কি? চলো পরেরটা দেখা যাক! 🥰",
+            "আরেকটা বক্স! দেখি তোমার ধৈর্য কতদূর আছে! 🤩",
+            "আর মাত্র কয়েকটা বাকি আছে, বোর হচ্ছো নাকি? 😉",
+            "শেষের দিকে চলে আসছি প্রায়! প্রস্তুত তো? 💖"
+        ];
 
-            <div></div><div></div><div></div>
-            <div class="cal-date">1</div><div class="cal-date">2</div><div class="cal-date">3</div><div class="cal-date">4</div>
-            <div class="cal-date">5</div><div class="cal-date">6</div><div class="cal-date">7</div><div class="cal-date">8</div>
-            <div class="cal-date">9</div><div class="cal-date">10</div><div class="cal-date">11</div><div class="cal-date">12</div>
-            <div class="cal-date">13</div><div class="cal-date">14</div><div class="cal-date">15</div><div class="cal-date">16</div>
-            <div class="cal-date">17</div><div class="cal-date">18</div><div class="cal-date">19</div><div class="cal-date">20</div>
-            <div class="cal-date">21</div><div class="cal-date">22</div><div class="cal-date">23</div><div class="cal-date">24</div>
-            <div class="cal-date">25</div>
-            <div class="cal-date cal-highlight">26</div>
-            <div class="cal-date">27</div><div class="cal-date">28</div><div class="cal-date">29</div><div class="cal-date">30</div>
-            <div class="cal-date">31</div>
-          </div>
-        </div>
-        <h2>বলতো আজকের দিনটা কি? 🤔❤️</h2>
-      </div>
+        let currentStep = -1; 
+        let timer = null; // অটো ৮ সেকেন্ড টাইমির নিয়ন্ত্রণ করার জন্য
+        const container = document.getElementById('container');
+        const bgMusic = document.getElementById('bgMusic');
+        let isMusicPlaying = false;
 
-      <div id="wishView" class="reveal-wish" style="display: none;">
-        <div class="sticker-title">Happy Birthday! 🎉</div>
-        <h2>আজকের এই দিনে তোমাকে অনেক অনেক শুভেচ্ছা! 🥳</h2>
-        <p style="font-size: 18px; font-weight: bold; color: #fecfef; margin-top: 10px;">
-          শুভ জন্মদিন আমার লক্ষী বউ! 💖✨
-        </p>
-      </div>
-    </div>
-
-    <!-- STEP 2: PHOTO 1 -->
-    <div class="content-box" id="step2">
-      <h2>আমার সমস্ত ভালোবাসার ঠিকানা 🌹</h2>
-      <div class="photo-card">
-        <img src="https://lh3.googleusercontent.com/d/1VilMT2KyEk3fZ2IPF79OTFpEeXRg-HFs" alt="Photo 1">
-      </div>
-      <p>তোমার ওই মিষ্টি এক চিলতে হাসি পৃথিবীর সব অন্ধকার দূর করে দিতে পারে, প্রিয়তমা!</p>
-    </div>
-
-    <!-- STEP 3 -->
-    <div class="content-box" id="step3">
-      <h2>জীবনের সেরা উপহার 💖</h2>
-      <p>আমার ভাগ্যে পাওয়া সবচেয়ে সুন্দর উপহারটি তুমি। তোমাকে আমার পাশে পাওয়াটা স্রষ্টার এক অশেষ নিয়ামত।</p>
-      <div style="font-size: 50px; margin-top: 15px;">💐✨👑✨💐</div>
-    </div>
-
-    <!-- STEP 4: PHOTO 2 -->
-    <div class="content-box" id="step4">
-      <h2>সুখ-দুঃখের নিত্যসঙ্গী 💍</h2>
-      <div class="photo-card">
-        <img src="https://lh3.googleusercontent.com/d/1qAAF8SGvFUfIt61dEdKITnqxwd9Dr2ID" alt="Photo 2">
-      </div>
-      <p>হাতটা তো ধরেই ফেলেছি, এবার বাকিটা জীবন এভাবেই তোমার কাঁধে কাঁধ মিলিয়ে কাটিয়ে দিতে চাই!</p>
-    </div>
-
-    <!-- STEP 5: PHOTO 3 -->
-    <div class="content-box" id="step5">
-      <h2>আমার হৃদয়ের রাজকন্যী 👑</h2>
-      <div class="photo-card">
-        <img src="https://lh3.googleusercontent.com/d/16_EmNUTLDrMFzDLDCAnWMfhBpFtlki_Y" alt="Photo 3">
-      </div>
-      <p>তুমি শুধু আমার স্ত্রী নও, আমার স্বপ্নের রাজকন্যা। সারাজীবন এভাবেই তোমায় আগলে রাখবো।</p>
-    </div>
-
-    <!-- STEP 6 -->
-    <div class="content-box" id="step6">
-      <h2>হাজার তারার মাঝে তুমি 🌟</h2>
-      <p>আকাশের কোটি তারার মাঝেও যেমন চাঁদ আলাদাভাবে চেনা যায়, তেমনি আমার পুরো পৃথিবীতে তুমি অনন্য।</p>
-      <div style="font-size: 50px; margin-top: 15px;">🌌💖✨💖🌌</div>
-    </div>
-
-    <!-- STEP 7: PHOTO 4 -->
-    <div class="content-box" id="step7">
-      <h2>অভিমান আর আদরের কাব্য 🕊️</h2>
-      <div class="photo-card">
-        <img src="https://lh3.googleusercontent.com/d/1OeA9IQ5OynmESJx-i6fjrKS527sEC2P2" alt="Photo 4">
-      </div>
-      <p>তোমার এই মিষ্টি চোখ দুটোর চাহনিতে আমি রোজ হাজার বার নতুন করে প্রেমে পড়ি!</p>
-    </div>
-
-    <!-- STEP 8: PHOTO 5 -->
-    <div class="content-box" id="step8">
-      <h2>অনন্তকালের ভালোবাসা ❤️</h2>
-      <div class="photo-card">
-        <img src="https://lh3.googleusercontent.com/d/1Yt-pOmVRzvOQiCuIPnFMQ8IhY-Qp2cRu" alt="Photo 5">
-      </div>
-      <p>তোমার সাথে কাটানো প্রতিটি মুহূর্ত আমার জীবনের সেরা গল্প হয়ে থাকবে।</p>
-    </div>
-
-    <!-- STEP 9 -->
-    <div class="content-box" id="step9">
-      <h2>আমার প্রার্থনার জবাব 🤲</h2>
-      <p>আল্লাহ তোমার জীবনকে অপার আনন্দ ও সুস্বাস্থ্য দিয়ে ভরিয়ে দিন। সবসময় অনেক অনেক ভালো থাকো আমার বউ!</p>
-      <div style="font-size: 45px; margin-top: 15px;">🤲🌸✨🌸🤲</div>
-    </div>
-
-    <!-- STEP 10: PHOTO 1 -->
-    <div class="content-box" id="step10">
-      <h2>আমার মিষ্টি রোদের আলো ☀️</h2>
-      <div class="photo-card">
-        <img src="https://lh3.googleusercontent.com/d/1VilMT2KyEk3fZ2IPF79OTFpEeXRg-HFs" alt="Photo 1">
-      </div>
-      <p>একঘেয়ে জীবনে তুমি এলে ভোরের সোনালী রোদের মতো, জীবনটাকে সুন্দর করে সাজিয়ে দিতে।</p>
-    </div>
-
-    <!-- STEP 11: PHOTO 2 -->
-    <div class="content-box" id="step11">
-      <h2>আমার প্রশান্তির নীড় 🏡</h2>
-      <div class="photo-card">
-        <img src="https://lh3.googleusercontent.com/d/1qAAF8SGvFUfIt61dEdKITnqxwd9Dr2ID" alt="Photo 2">
-      </div>
-      <p>দিনশেষে তোমার কাছে ফেরাটাই আমার সব ক্লান্তি দূর করে দেয়, তুমিই আমার আসল ঘর।</p>
-    </div>
-
-    <!-- STEP 12 -->
-    <div class="content-box" id="step12">
-      <h2>ভালোবাসার মিষ্টি অনুভূতি 💕</h2>
-      <p>প্রেমে পড়া সহজ, কিন্তু সারাজীবন কাউকে এভাবে ভালোবেসে যাওয়া এক সুন্দর অনুভূতি। আমি তোমায় ভালোবাসি মায়েশা!</p>
-      <div style="font-size: 45px; margin-top: 15px;">💌🎉💖🎉💌</div>
-    </div>
-
-    <!-- STEP 13: PHOTO 3 -->
-    <div class="content-box" id="step13">
-      <h2>চিরদিনের জন্য তুমি ♾️</h2>
-      <div class="photo-card">
-        <img src="https://lh3.googleusercontent.com/d/16_EmNUTLDrMFzDLDCAnWMfhBpFtlki_Y" alt="Photo 3">
-      </div>
-      <p>পৃথিবীর সব আনন্দ একপাশে, আর তোমার ওই মিষ্টি হাসি অন্যপাশে—তুমিই আমার জয়!</p>
-    </div>
-
-    <!-- STEP 14: PHOTO 4 -->
-    <div class="content-box" id="step14">
-      <h2>স্বপ্নের রঙিন রাজপ্রাসাদ 🏰</h2>
-      <div class="photo-card">
-        <img src="https://lh3.googleusercontent.com/d/1OeA9IQ5OynmESJx-i6fjrKS527sEC2P2" alt="Photo 4">
-      </div>
-      <p>আমার স্বপ্নের রাজ্য কেবল তোমাকে নিয়েই গড়া, আর সেখানে তুমিই একমাত্র সম্রাজ্ঞী!</p>
-    </div>
-
-    <!-- STEP 15: FINAL STEP (STAYS HERE, NO LOOP, NO BOX) -->
-    <div class="content-box" id="step15">
-      <h2>এক সাথে হাজার বছর ❤️</h2>
-      <div class="photo-card">
-        <img src="https://lh3.googleusercontent.com/d/1Yt-pOmVRzvOQiCuIPnFMQ8IhY-Qp2cRu" alt="Photo 5">
-      </div>
-      <p>তোমার সাথেই শেষ নিঃশ্বাস পর্যন্ত পথ চলতে চাই, মায়েশা। শুভ জন্মদিন ভালোবাসা!</p>
-      <button class="replay-btn" onclick="resetExperience()">প্রথম থেকে আবার দেখো 🔄</button>
-    </div>
-
-  </div>
-
-  <script>
-    let currentStep = 0;
-    const totalSteps = 15;
-    let autoHideTimer = null;
-    let internalBlastTimer = null;
-
-    const positions = [
-      'pos-top-right',
-      'pos-bottom-left',
-      'pos-top-left',
-      'pos-bottom-right',
-      'pos-center-top',
-      'pos-center-bottom',
-      'pos-top-right',
-      'pos-bottom-left',
-      'pos-top-left',
-      'pos-bottom-right',
-      'pos-center-top',
-      'pos-bottom-left',
-      'pos-top-right',
-      'pos-center-bottom'
-    ];
-
-    const hints = [
-      'এখানে চাপ দাও! 💥',
-      'আরেকটি সারপ্রাইজ! 🎁',
-      'এটাতে ব্লাস্ট করো! 💥',
-      'এখানে আবার চাপ দাও! ✨',
-      'ধাম করে ফাটাও! 🎁',
-      'আরেকটি নতুন ফটো! 💥',
-      'এখানে চাপ দাও! 🎈',
-      'আরেকটি উপহার! 🎁',
-      'ফাটিয়ে দাও! 💥',
-      'এখানে চাপ দাও! ✨',
-      'আবার ব্লাস্ট করো! 💥',
-      'আরেকটি সারপ্রাইজ! 🎁',
-      'প্রায় শেষের দিকে! 💖',
-      'শেষ ব্লাস্টটি করো! 🎉'
-    ];
-
-    function playAudio() {
-      const music = document.getElementById('bgMusic');
-      if (music) {
-        music.play().catch(e => console.log("Waiting for user interaction"));
-      }
-    }
-
-    window.addEventListener('load', playAudio);
-    document.body.addEventListener('click', playAudio, { once: true });
-
-    function triggerBlast() {
-      playAudio();
-
-      if (autoHideTimer) clearTimeout(autoHideTimer);
-      if (internalBlastTimer) clearTimeout(internalBlastTimer);
-
-      const trigger = document.getElementById('boxTrigger');
-      trigger.style.display = 'none';
-
-      currentStep++;
-
-      // Mega Fireworks Blast
-      confetti({
-        particleCount: 120,
-        spread: 120,
-        origin: { y: 0.6 },
-        colors: ['#ff3366', '#ff758c', '#ffffff', '#ffd700', '#00f2fe']
-      });
-
-      spawnBurstParticles(20);
-
-      // Hide previous contents
-      for(let i=1; i<=totalSteps; i++) {
-        const el = document.getElementById(`step${i}`);
-        if(el) el.classList.remove('active');
-      }
-
-      const activeContent = document.getElementById(`step${currentStep}`);
-      if(activeContent) {
-        activeContent.classList.add('active');
-      }
-
-      // STEP 1 SPECIAL LOGIC: Calendar -> 5s -> Auto Blast -> Wish Text -> 5s -> Close
-      if (currentStep === 1) {
-        document.getElementById('calView').style.display = 'block';
-        document.getElementById('wishView').style.display = 'none';
-
-        // 5 seconds after calendar opens, auto blast into birthday wish!
-        internalBlastTimer = setTimeout(() => {
-          confetti({
-            particleCount: 150,
-            spread: 140,
-            origin: { y: 0.5 },
-            colors: ['#ff3366', '#ff758c', '#ffd700', '#ffffff']
-          });
-          spawnBurstParticles(25);
-
-          document.getElementById('calView').style.display = 'none';
-          document.getElementById('wishView').style.display = 'block';
-
-          // Stay 5 seconds with wish text, then close step 1 & show box 2
-          autoHideTimer = setTimeout(() => {
-            activeContent.classList.remove('active');
-            showNextBox();
-          }, 5000);
-
-        }, 5000);
-
-      } else {
-        // STEPS 2 to 14: Stay for 5 seconds -> Close -> Show next bouncing box
-        if (currentStep < totalSteps) {
-          autoHideTimer = setTimeout(() => {
-            if(activeContent) activeContent.classList.remove('active');
-            showNextBox();
-          }, 5000);
-        } else {
-          // STEP 15: Last step stays opened forever, doesn't disappear
-          trigger.style.display = 'none';
+        function toggleMusic() {
+            if (isMusicPlaying) {
+                bgMusic.pause();
+                document.getElementById('musicBtn').innerText = '🔇';
+                isMusicPlaying = false;
+            } else {
+                bgMusic.play();
+                document.getElementById('musicBtn').innerText = '🎵';
+                isMusicPlaying = true;
+            }
         }
-      }
-    }
 
-    function showNextBox() {
-      const trigger = document.getElementById('boxTrigger');
-      trigger.className = `gift-trigger ${positions[currentStep - 1]}`;
-      document.getElementById('boxHint').innerText = hints[currentStep - 1] || 'এখানে চাপ দাও! 💥';
-      trigger.style.display = 'flex';
-    }
+        function clearTimer() {
+            if (timer) clearTimeout(timer);
+        }
 
-    function resetExperience() {
-      if (autoHideTimer) clearTimeout(autoHideTimer);
-      if (internalBlastTimer) clearTimeout(internalBlastTimer);
-      currentStep = 0;
-      const trigger = document.getElementById('boxTrigger');
-      trigger.className = 'gift-trigger pos-center';
-      document.getElementById('boxHint').innerText = 'এই আমার প্রিয় বউ, তুমি কি আমার প্রেমিক হবা? ❤️';
-      trigger.style.display = 'flex';
+        function renderStep() {
+            clearTimer(); // আগের কোনো টাইমার থাকলে তা পরিষ্কার করা
 
-      for(let i=1; i<=totalSteps; i++) {
-        const el = document.getElementById(`step${i}`);
-        if(el) el.classList.remove('active');
-      }
-    }
+            if (currentStep === -1) {
+                container.innerHTML = `
+                    <div class="card">
+                        <div class="initial-gift-box" onclick="startCalendar()">🎁</div>
+                        <p style="margin-bottom: 0; font-size: 1.1rem; color: #d81b60;">আজকের ক্যালেন্ডার উপহারটি খুলতে এখানে চাপ দাও!</p>
+                    </div>
+                `;
+            } else if (currentStep === 0) {
+                container.innerHTML = `
+                    <div class="card">
+                        <h2 style="color: #ff4081; margin-bottom: 10px;">📅 স্পেশ্যাল ক্যালেন্ডার</h2>
+                        <p>আজকের দিনটি তোমার জীবনের সবচেয়ে সুন্দর এবং বিশেষ একটি দিন! ✨</p>
+                        <div class="side-action-area">
+                            <span style="font-size: 0.85rem; color: #888;">৫ সেকেন্ড পর অটো ব্লাস্ট হবে...</span>
+                            <button class="btn" onclick="showBirthdayBlast()">তাড়াতাড়ি দেখ ➡️</button>
+                        </div>
+                    </div>
+                `;
+                // ৫ সেকেন্ড পর অটো ব্লাস্ট
+                timer = setTimeout(() => {
+                    showBirthdayBlast();
+                }, 5000);
+            } else if (currentStep === 1) {
+                startFlowersRain();
+                container.innerHTML = `
+                    <div class="birthday-screen">
+                        <div class="age-badge">17</div>
+                        <div class="hbd-title">🎉 Happy Birthday! 🎂</div>
+                        <div class="cake-img">🎂🔥</div>
+                        <p style="color: #d81b60; font-weight: bold; margin-top: 10px;">তোমার আজকের দিনটি অনেক আনন্দে কাটুক!</p>
+                        <div class="side-action-area">
+                            <span style="font-size: 0.85rem; color: #777;">৮ সেকেন্ড পর বক্স আসবে...</span>
+                            <button class="btn" onclick="skipBirthday()">বক্স খোলো 🎁</button>
+                        </div>
+                    </div>
+                `;
+                // ৮ সেকেন্ড পর অটোমেটিক পরবর্তী বক্সে চলে যাবে (যদি ইউজার ক্লিক না করে)
+                timer = setTimeout(() => {
+                    currentStep = 2;
+                    renderStep();
+                }, 8000);
+            } else if (currentStep >= 2 && currentStep < 13) {
+                let funnyMsgIndex = (currentStep - 2) % funnyTexts.length;
+                let imgIndex = currentStep - 2;
+                
+                container.innerHTML = `
+                    <div class="card">
+                        <!-- ছবি এবং লেখা একদম পরিষ্কার ও আলাদা রাখা হয়েছে, ওপরের অংশে কোনো বক্স নেই -->
+                        <img src="${images[imgIndex]}" alt="Memory">
+                        <p>${messages[imgIndex]}</p>
+                        
+                        <!-- বক্স এবং বাটন একদম নিচে বা এক সাইডে রাখা হয়েছে -->
+                        <div class="side-action-area">
+                            <div class="small-box" onclick="nextPhotoStep()" title="বক্সে চাপ দিন">🎁</div>
+                            <span style="font-size: 0.85rem; color: #e91e63; font-weight: bold;">${funnyTexts[funnyMsgIndex]}</span>
+                            <button class="btn" onclick="nextPhotoStep()">
+                                ${imgIndex === 10 ? 'শেষ কথা ❤️' : 'পরেরটা ➡️'}
+                            </button>
+                        </div>
+                    </div>
+                `;
 
-    function spawnBurstParticles(count = 15) {
-      const items = ['🌹', '✨', '💖', '🌸', '💥', '🎈'];
-      for(let i = 0; i < count; i++) {
-        setTimeout(() => {
-          const item = document.createElement('div');
-          item.classList.add('sparkle');
-          item.innerHTML = items[Math.floor(Math.random() * items.length)];
-          item.style.left = Math.random() * 90 + 'vw';
-          item.style.fontSize = (Math.random() * 15 + 18) + 'px';
-          item.style.animationDuration = (Math.random() * 2 + 2) + 's';
-          document.getElementById('sparkle-container').appendChild(item);
+                // প্রতিটি ছবি ও লেখার স্ক্রিনও চাইলে ৮ সেকেন্ড পর অটো নিতে পারে, তবে ইউজার চাইলে বক্সে বা বাটনে ক্লিক করে কন্ট্রোল করতে পারবে
+                timer = setTimeout(() => {
+                    nextPhotoStep();
+                }, 8000);
 
-          setTimeout(() => { item.remove(); }, 3500);
-        }, i * 50);
-      }
-    }
+            } else {
+                container.innerHTML = `
+                    <div class="card">
+                        <h2 style="color: #d81b60; margin-bottom: 15px;">সবগুলো উপহার খোলা শেষ! ❤️</h2>
+                        <p>আশা করি তোমার দিনটি আজ অসাধারণ কেটেছে!</p>
+                        <button class="btn" onclick="restart()">আবার শুরু থেকে দেখো 🔄</button>
+                    </div>
+                `;
+            }
+        }
 
-    setInterval(() => {
-      const items = ['✨', '💖', '🌸', '🎈'];
-      const item = document.createElement('div');
-      item.classList.add('sparkle');
-      item.innerHTML = items[Math.floor(Math.random() * items.length)];
-      item.style.left = Math.random() * 92 + 'vw';
-      item.style.animationDuration = (Math.random() * 3 + 3) + 's';
-      document.getElementById('sparkle-container').appendChild(item);
+        function startCalendar() {
+            if(!isMusicPlaying) {
+                bgMusic.play().then(() => { isMusicPlaying = true; }).catch(() => {});
+            }
+            currentStep = 0;
+            renderStep();
+        }
 
-      setTimeout(() => { item.remove(); }, 4500);
-    }, 600);
-  </script>
+        function showBirthdayBlast() {
+            clearTimer();
+            if (currentStep === 0) {
+                currentStep = 1;
+                renderStep();
+            }
+        }
+
+        function skipBirthday() {
+            clearTimer();
+            currentStep = 2;
+            renderStep();
+        }
+
+        function nextPhotoStep() {
+            clearTimer();
+            currentStep++;
+            renderStep();
+        }
+
+        function startFlowersRain() {
+            const flowers = ['🌼', '🌸', '🌹', '🌻', '✨', '💖'];
+            for (let i = 0; i < 25; i++) {
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.classList.add('falling-flower');
+                    el.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+                    el.style.left = Math.random() * window.innerWidth + 'px';
+                    el.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    document.body.appendChild(el);
+                    setTimeout(() => el.remove(), 5000);
+                }, i * 200);
+            }
+        }
+
+        function restart() {
+            clearTimer();
+            currentStep = -1;
+            renderStep();
+        }
+
+        renderStep();
+    </script>
 </body>
-          </html>
+</html>
