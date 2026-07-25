@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Mayesha! 🎁💥</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: radial-gradient(circle at center, #1a1c2e, #0f101d);
+      font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: #fff;
+      padding: 10px;
+    }
+
+    /* Background Floating Sparkles */
+    .sparkle {
+      position: absolute;
+      font-size: 20px;
+      animation: floatUp 4s linear infinite;
+      bottom: -30px;
+      z-index: 1;
+      pointer-events: none;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(0.8); opacity: 1; }
+      100% { transform: translateY(-105vh) scale(1.2); opacity: 0; }
+    }
+
+    /* Single Stage Card Display */
+    .app-card {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      height: 670px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+      backdrop-filter: blur(20px);
+      z-index: 10;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Bouncing & Floating Animated Gift Trigger Box */
+    .gift-trigger {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      z-index: 40;
+      transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      animation: bounceGlow 1.2s infinite ease-in-out;
+    }
+
+    /* Jump and Bounce Animation */
+    @keyframes bounceGlow {
+      0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 10px #ff3366); }
+      50% { transform: translateY(-20px) scale(1.15) rotate(5deg); filter: drop-shadow(0 0 25px #ff758c); }
+    }
+
+    .gift-icon {
+      font-size: 80px;
+      user-select: none;
+    }
+    .gift-hint {
+      background: linear-gradient(45deg, #ff3366, #ff758c);
+      color: #fff;
+      font-size: 13px;
+      font-weight: bold;
+      padding: 6px 14px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(255, 51, 102, 0.6);
+      margin-top: -5px;
+      white-space: nowrap;
+      border: 1px solid #fff;
+    }
+
+    /* 15 Positions for Gift Box bouncing all around screen */
+    .pos-1  { top: 42%; left: 50%; transform: translate(-50%, -50%); }
+    .pos-2  { top: 12%; right: 12%; }
+    .pos-3  { bottom: 15%; left: 12%; }
+    .pos-4  { top: 15%; left: 12%; }
+    .pos-5  { bottom: 15%; right: 12%; }
+    .pos-6  { top: 20%; left: 50%; transform: translateX(-50%); }
+    .pos-7  { bottom: 20%; left: 50%; transform: translateX(-50%); }
+    .pos-8  { top: 35%; right: 8%; }
+    .pos-9  { top: 35%; left: 8%; }
+    .pos-10 { top: 10%; left: 50%; transform: translateX(-50%); }
+    .pos-11 { bottom: 12%; right: 20%; }
+    .pos-12 { top: 15%; right: 20%; }
+    .pos-13 { bottom: 25%; left: 15%; }
+    .pos-14 { top: 25%; right: 15%; }
+    .pos-15 { top: 45%; left: 50%; transform: translate(-50%, -50%); }
+
+    /* Content Box with Blast Pop-in Animation */
+    .content-box {
+      width: 100%;
+      height: 100%;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: blastZoom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+    .content-box.active {
+      display: flex;
+    }
+
+    @keyframes blastZoom {
+      0% { opacity: 0; transform: scale(0.1) rotate(-20deg); }
+      70% { transform: scale(1.1) rotate(3deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+
+    /* Header & Photo Card Styles */
+    .sticker-title {
+      font-family: 'Pacifico', cursive;
+      font-size: 24px;
+      background: linear-gradient(45deg, #ff9a9e, #fecfef, #a1c4fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      padding: 6px 14px;
+      border: 2px dashed #ff758c;
+      border-radius: 20px;
+      background-color: rgba(0, 0, 0, 0.3);
+      margin-bottom: 10px;
+    }
+
+    .photo-card {
+      width: 100%;
+      height: 250px;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 3px solid #ff758c;
+      box-shadow: 0 0 25px rgba(255, 117, 140, 0.5);
+      margin: 12px 0;
+      background: #000;
+    }
+    .photo-card img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    h2 {
+      color: #ff9a9e;
+      font-size: 20px;
+      margin-bottom: 6px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: #f0f0f0;
+      padding: 0 8px;
+    }
+
+    .replay-btn {
+      margin-top: 15px;
+      background: linear-gradient(45deg, #ff3366, #ff758c);
+      color: white; border: none;
+      padding: 10px 24px; font-size: 15px; font-weight: bold;
+      border-radius: 30px; cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 51, 102, 0.4);
+    }
+  </style>
+</head>
+<body onclick="autoPlayMusicOnce()">
+
+  <!-- Audio Player -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="sparkle-container"></div>
+
+  <div class="app-card">
+
+    <!-- BOUNCING GIFT BOX TRIGGER -->
+    <div class="gift-trigger pos-1" id="boxTrigger" onclick="openNextBlast(event)">
+      <div class="gift-icon">🎁</div>
+      <div class="gift-hint" id="boxHint">এখানে চাপ দাও! 💥</div>
+    </div>
+
+    <!-- 15 BLAST CONTENT STAGES -->
+    
+    <!-- STEP 1: WELCOME -->
+    <div class="content-box active" id="step1">
+      <div class="sticker-title">Happy Birthday Mayesha</div>
+      <h2>শুভ জন্মদিন আমার রাজকন্যা! 💖</h2>
+      <p>আজকের এই স্পেশাল দিনে তোমার জন্য অপেক্ষা করছে ১৫টি ধামাকা সারপ্রাইজ! লাফানো বক্সগুলোতে চাপ দাও আর ব্লাস্ট দেখতে থাকো!</p>
+    </div>
+
+    <!-- STEP 2: PHOTO 1 -->
+    <div class="content-box" id="step2">
+      <h2>আমার সমস্ত ভালোবাসার ঠিকানা 🌹</h2>
+      <div class="photo-card">
+        <img src="https://lh3.googleusercontent.com/d/1VilMT2KyEk3fZ2IPF79OTFpEeXRg-HFs" alt="Photo 1">
+      </div>
+      <p>তোমার ওই মিষ্টি এক চিলতে হাসি পৃথিবীর সব অন্ধকার দূর করে দিতে পারে, প্রিয়তমা!</p>
+    </div>
+
+    <!-- STEP 3: CAPTION ONLY 1 -->
+    <div class="content-box" id="step3">
+      <h2>জীবনের সেরা উপহার 💖</h2>
+      <p>আমার ভাগ্যে পাওয়া সবচেয়ে সুন্দর উপহারটি তুমি। তোমাকে আমার পাশে পাওয়াটা স্রষ্টার এক অশেষ নিয়ামত।</p>
+      <div style="font-size: 50px; margin-top: 15px;">💐✨👑✨💐</div>
+    </div>
+
+    <!-- STEP 4: PHOTO 2 -->
+    <div class="content-box" id="step4">
+      <h2>সুখ-দুঃখের নিত্যসঙ্গী 💍</h2>
+      <div class="photo-card">
+        <img src="https://lh3.googleusercontent.com/d/1qAAF8SGvFUfIt61dEdKITnqxwd9Dr2ID" alt="Photo 2">
+      </div>
+      <p>হাতটা তো ধরেই ফেলেছি, এবার বাকিটা জীবন এভাবেই তোমার কাঁধে কাঁধ মিলিয়ে কাটিয়ে দিতে চাই!</p>
+    </div>
+
+    <!-- STEP 5: PHOTO 3 -->
+    <div class="content-box" id="step5">
+      <h2>আমার হৃদয়ের রাজকন্যী 👑</h2>
+      <div class="photo-card">
+        <img src="https://lh3.googleusercontent.com/d/16_EmNUTLDrMFzDLDCAnWMfhBpFtlki_Y" alt="Photo 3">
+      </div>
+      <p>তুমি শুধু আমার স্ত্রী নও, আমার স্বপ্নের রাজকন্যা। সারাজীবন এভাবেই তোমায় আগলে রাখবো।</p>
+    </div>
+
+    <!-- STEP 6: CAPTION ONLY 2 -->
+    <div class="content-box" id="step6">
+      <h2>হাজার তারার মাঝে তুমি 🌟</h2>
+      <p>আকাশের কোটি তারার মাঝেও যেমন চাঁদ আলাদাভাবে চেনা যায়, তেমনি আমার পুরো পৃথিবীতে তুমি অনন্য।</p>
+      <div style="font-size: 50px; margin-top: 15px;">🌌💖✨💖🌌</div>
+    </div>
+
+    <!-- STEP 7: PHOTO 4 -->
+    <div class="content-box" id="step7">
+      <h2>অভিমান আর আদরের কাব্য 🕊️</h2>
+      <div class="photo-card">
+        <img src="https://lh3.googleusercontent.com/d/1OeA9IQ5OynmESJx-i6fjrKS527sEC2P2" alt="Photo 4">
+      </div>
+      <p>তোমার এই মিষ্টি চোখ দুটোর চাহনিতে আমি রোজ হাজার বার নতুন করে প্রেমে পড়ি!</p>
+    </div>
+
+    <!-- STEP 8: PHOTO 5 -->
+    <div class="content-box" id="step8">
+      <h2>অনন্তকালের ভালোবাসা ❤️</h2>
+      <div class="photo-card">
+        <img src="https://lh3.googleusercontent.com/d/1Yt-pOmVRzvOQiCuIPnFMQ8IhY-Qp2cRu" alt="Photo 5">
+      </div>
+      <p>তোমার সাথে কাটানো প্রতিটি মুহূর্ত আমার জীবনের সেরা গল্প হয়ে থাকবে।</p>
+    </div>
+
+    <!-- STEP 9: CAPTION ONLY 3 -->
+    <div class="content-box" id="step9">
+      <h2>আমার প্রার্থনার জবাব 🤲</h2>
+      <p>আল্লাহ তোমার জীবনকে অপার আনন্দ ও সুস্বাস্থ্য দিয়ে ভরিয়ে দিন। সবসময় অনেক অনেক ভালো থাকো আমার বউ!</p>
+      <div style="font-size: 45px; margin-top: 15px;">🤲🌸✨🌸🤲</div>
+    </div>
+
+    <!-- STEP 10: PHOTO 6 -->
+    <div class="content-box" id="step10">
+      <h2>আমার মিষ্টি রোদের আলো ☀️</h2>
+      <div class="photo-card">
+        <img src="https://lh3.googleusercontent.com/d/1VilMT2KyEk3fZ2IPF79OTFpEeXRg-HFs" alt="Photo 6">
+      </div>
+      <p>একঘেয়ে জীবনে তুমি এলে ভোরের সোনালী রোদের মতো, জীবনটাকে সুন্দর করে সাজিয়ে দিতে।</p>
+    </div>
+
+    <!-- STEP 11: PHOTO 7 -->
+    <div class="content-box" id="step11">
+      <h2>আমার প্রশান্তির নীড় 🏡</h2>
+      <div class="photo-card">
+        <img src="https://lh3.googleusercontent.com/d/1qAAF8SGvFUfIt61dEdKITnqxwd9Dr2ID" alt="Photo 7">
+      </div>
+      <p>দিনশেষে তোমার কাছে ফেরাটাই আমার সব ক্লান্তি দূর করে দেয়, তুমিই আমার আসল ঘর।</p>
+    </div>
+
+    <!-- STEP 12: CAPTION ONLY 4 -->
+    <div class="content-box" id="step12">
+      <h2>ভালোবাসার মিষ্টি অনুভূতি 💕</h2>
+      <p>প্রেমে পড়া সহজ, কিন্তু সারাজীবন কাউকে এভাবে ভালোবেসে যাওয়া এক সুন্দর অনুভূতি। আমি তোমায় ভালোবাসি মায়েশা!</p>
+      <div style="font-size: 45px; margin-top: 15px;">💌🎉💖🎉💌</div>
+    </div>
+
+    <!-- STEP 13: PHOTO 8 -->
+    <div class="content-box" id="step13">
+      <h2>চিরদিনের জন্য তুমি ♾️</h2>
+      <div class="photo-card">
+        <img src="https://lh3.googleusercontent.com/d/16_EmNUTLDrMFzDLDCAnWMfhBpFtlki_Y" alt="Photo 8">
+      </div>
+      <p>পৃথিবীর সব আনন্দ একপাশে, আর তোমার ওই মিষ্টি হাসি অন্যপাশে—তুমিই আমার জয়!</p>
+    </div>
+
+    <!-- STEP 14: PHOTO 9 -->
+    <div class="content-box" id="step14">
+      <h2>স্বপ্নের রঙিন রাজপ্রাসাদ 🏰</h2>
+      <div class="photo-card">
+        <img src="https://lh3.googleusercontent.com/d/1OeA9IQ5OynmESJx-i6fjrKS527sEC2P2" alt="Photo 9">
+      </div>
+      <p>আমার স্বপ্নের রাজ্য কেবল তোমাকে নিয়েই গড়া, আর সেখানে তুমিই একমাত্র সম্রাজ্ঞী!</p>
+    </div>
+
+    <!-- STEP 15: PHOTO 10 & FINAL WISH -->
+    <div class="content-box" id="step15">
+      <h2>এক সাথে হাজার বছর ❤️</h2>
+      <div class="photo-card">
+        <img src="https://lh3.googleusercontent.com/d/1Yt-pOmVRzvOQiCuIPnFMQ8IhY-Qp2cRu" alt="Photo 10">
+      </div>
+      <p>তোমার সাথেই শেষ নিঃশ্বাস পর্যন্ত পথ চলতে চাই, মায়েশা। শুভ জন্মদিন ভালোবাসা!</p>
+      <button class="replay-btn" onclick="resetExperience()">আবার ম্যাজিক দেখো 🔄</button>
+    </div>
+
+  </div>
+
+  <script>
+    let currentStep = 1;
+    const totalSteps = 15;
+    let musicStarted = false;
+
+    // 15 Dynamic Floating Positions
+    const positions = [
+      'pos-1', 'pos-2', 'pos-3', 'pos-4', 'pos-5',
+      'pos-6', 'pos-7', 'pos-8', 'pos-9', 'pos-10',
+      'pos-11', 'pos-12', 'pos-13', 'pos-14', 'pos-15'
+    ];
+
+    const hints = [
+      'এখানে চাপ দাও! 💥',
+      'উফ! এখানে আরেকটা 🎁',
+      'এটাতে ব্লাস্ট করো! 💥',
+      'এখানে আবার চাপ দাও! ✨',
+      'ধাম করে ফাটাও! 🎁',
+      'আরেকটি সারপ্রাইজ! 💥',
+      'আরেকটি ব্লাস্ট! 🎈',
+      'এখানে চাপ দাও! 🎁',
+      'ফাটিয়ে দাও! 💥',
+      'আরেকটি উপহার! ✨',
+      'এখানে চাপ দাও! 🎁',
+      'আরেকটি ব্লাস্ট করো! 💥',
+      'প্রায় শেষের দিকে! 💖',
+      'শেষ ব্লাস্টটি করো! 🎉'
+    ];
+
+    // Auto Play Audio when user visits or touches screen
+    function autoPlayMusicOnce() {
+      if(!musicStarted) {
+        const music = document.getElementById('bgMusic');
+        if(music) {
+          music.play().then(() => {
+            musicStarted = true;
+          }).catch(e => console.log("Audio waiting for user click"));
+        }
+      }
+    }
+
+    // Auto-try play on load
+    window.addEventListener('load', () => {
+      autoPlayMusicOnce();
+    });
+
+    function openNextBlast(event) {
+      if (event) event.stopPropagation();
+      autoPlayMusicOnce();
+
+      // Hide all current content steps
+      for(let i=1; i<=totalSteps; i++) {
+        const el = document.getElementById(`step${i}`);
+        if(el) el.classList.remove('active');
+      }
+
+      currentStep++;
+
+      // Trigger Mega Colorful Confetti Burst
+      confetti({
+        particleCount: 110,
+        spread: 120,
+        origin: { y: 0.6 },
+        colors: ['#ff3366', '#ff758c', '#ffffff', '#ffd700', '#00f2fe']
+      });
+
+      spawnBurstParticles(20);
+
+      // Show new content
+      const activeContent = document.getElementById(`step${currentStep}`);
+      if(activeContent) {
+        activeContent.classList.add('active');
+      }
+
+      // Move Bouncing Gift Box to next random position
+      const trigger = document.getElementById('boxTrigger');
+      const hint = document.getElementById('boxHint');
+
+      if (currentStep <= totalSteps) {
+        trigger.className = `gift-trigger ${positions[currentStep - 1]}`;
+        hint.innerText = hints[currentStep - 1] || 'এখানে চাপ দাও! 💥';
+      }
+
+      // Hide Gift Box on last step
+      if (currentStep === totalSteps) {
+        trigger.style.display = 'none';
+      }
+    }
+
+    function resetExperience() {
+      currentStep = 1;
+      const trigger = document.getElementById('boxTrigger');
+      trigger.style.display = 'flex';
+      trigger.className = 'gift-trigger pos-1';
+      document.getElementById('boxHint').innerText = 'এখানে চাপ দাও! 💥';
+
+      for(let i=1; i<=totalSteps; i++) {
+        document.getElementById(`step${i}`).classList.remove('active');
+      }
+      document.getElementById('step1').classList.add('active');
+    }
+
+    function spawnBurstParticles(count = 15) {
+      const items = ['🌹', '✨', '💖', '🌸', '💥', '🎈'];
+      for(let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const item = document.createElement('div');
+          item.classList.add('sparkle');
+          item.innerHTML = items[Math.floor(Math.random() * items.length)];
+          item.style.left = Math.random() * 90 + 'vw';
+          item.style.fontSize = (Math.random() * 15 + 18) + 'px';
+          item.style.animationDuration = (Math.random() * 2 + 2) + 's';
+          document.getElementById('sparkle-container').appendChild(item);
+
+          setTimeout(() => { item.remove(); }, 3500);
+        }, i * 50);
+      }
+    }
+
+    setInterval(() => {
+      const items = ['✨', '💖', '🌸', '🎈'];
+      const item = document.createElement('div');
+      item.classList.add('sparkle');
+      item.innerHTML = items[Math.floor(Math.random() * items.length)];
+      item.style.left = Math.random() * 92 + 'vw';
+      item.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      document.getElementById('sparkle-container').appendChild(item);
+
+      setTimeout(() => { item.remove(); }, 4500);
+    }, 600);
+  </script>
+</body>
+  </html>
